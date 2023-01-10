@@ -19,10 +19,10 @@ Route::get('/', function () {
 });
 
 Route::middleware(['auth', 'verified'])
-    ->prefix('admin')
     ->name('admin.')
+    ->prefix('admin')
     ->group(function () {
-        Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+        Route::get('/', [ProjectController::class, 'index'])->name('dashboard');
     });
 
 // Route::middleware('auth')->group(function () {
