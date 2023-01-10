@@ -8,7 +8,8 @@
                         <td>{{ $project->title }}</td>
                         <td>{{ $project->production_date }}</td>
                         <td>
-                            <a href="" class="btn btn-primary">Mostra dettagli</a>
+                            <a href="{{ route('admin.projects.show', $project->slug) }}" class="btn btn-primary">Mostra
+                                dettagli</a>
                             <a href="" class="btn btn-secondary">Aggiorna</a>
                             <form action="" class="d-inline" method="POST">
                                 @method('DELETE')
@@ -20,5 +21,6 @@
                 @endforeach
             </tbody>
         </table>
+
     </div>
 @endsection
