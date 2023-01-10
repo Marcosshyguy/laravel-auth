@@ -16,7 +16,6 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        //
     }
 
     /**
@@ -42,7 +41,7 @@ class ProjectController extends Controller
 
     /**
      * Display the specified resource.
-     *
+     *--------------------------------------------------------------------------------------------------------------
      * @param  \App\Models\Project  $project
      * @return \Illuminate\Http\Response
      */
