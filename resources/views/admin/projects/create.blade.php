@@ -3,7 +3,7 @@
     <div class="container mt-3">
         <form action="{{ route('admin.projects.store') }}" method="POST">
             @csrf
-            {{-- @if ($errors->any())
+            @if ($errors->any())
                 <div class="alert alert-danger">
                     <ul>
                         @foreach ($errors->all() as $error)
@@ -11,28 +11,28 @@
                         @endforeach
                     </ul>
                 </div>
-            @endif --}}
+            @endif
 
             <div class="mb-2 position-relative">
                 <label for="title">Nome progetto</label>
                 <input type="text" class="form-control @error('title') is-invalid @enderror" id="title" name="title"
                     value="{{ old('title') }}">
-                {{-- @error('title')
+                @error('title')
                     <div class="invalid-feedback">
                         {{ $message }}
                     </div>
-                @enderror --}}
+                @enderror
             </div>
 
             <div class="mb-2">
                 <label for="description">Description</label>
                 <textarea class="form-control @error('description') is-invalid @enderror" name="description" id="description"
                     rows="10">{{ old('description') }}</textarea>
-                {{-- @error('description')
+                @error('description')
                     <div class="invalid-feedback">
                         {{ $message }}
                     </div>
-                @enderror --}}
+                @enderror
 
             </div>
 
@@ -42,11 +42,11 @@
                 <label for="languages_used">Linguaggi utilizzati</label>
                 <input type="text" class="form-control @error('languages_used') is-invalid @enderror" id="languages_used"
                     name="languages_used" value="{{ old('languages_used') }}">
-                {{-- @error('languages_used')
+                @error('languages_used')
                     <div class="invalid-feedback">
                         {{ $message }}
                     </div>
-                @enderror --}}
+                @enderror
             </div>
 
 
@@ -54,11 +54,11 @@
                 <label for="production_date">Data di produzione</label>
                 <input type="date" class="form-control @error('production_date') is-invalid @enderror"
                     id="production_date" name="production_date" value="{{ old('production_date') }}">
-                {{-- @error('production_date')
+                @error('production_date')
                     <div class="invalid-feedback">
                         {{ $message }}
                     </div>
-                @enderror --}}
+                @enderror
             </div>
 
             <button class="btn btn-dark" type="submit">Aggiungi</button>
