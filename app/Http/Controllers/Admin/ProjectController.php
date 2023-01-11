@@ -39,7 +39,7 @@ class ProjectController extends Controller
      */
     public function store(StoreProjectRequest $request)
     {
-        $addProject = $request->validated()->messages();
+        $addProject = $request->validated();
         $addProject['slug'] = Str::slug($addProject['title']);
         $project = Project::create($addProject);
         return redirect()->route('admin.projects.index')->with('projectAddedSuccessfully', 'Progetto aggiunto con successo');
@@ -64,7 +64,7 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-        //
+        return view('admin.projects.edit', compact('project'));
     }
 
     /**
@@ -76,7 +76,10 @@ class ProjectController extends Controller
      */
     public function update(UpdateProjectRequest $request, Project $project)
     {
-        //
+        $projectToChange = $request->validated();
+        $projectToChange['slug'] = Str::slug($projectToChange['title']);
+        $project->update($projectToChange);
+        return redirect()->route('admin.projects.index')->with('projectUpdatedSuccessfully', "$project->title è stato aggiornato con successo");
     }
 
     /**
@@ -87,6 +90,7 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
-        //
+        $project->delete();
+        return redirect()->route('admin.projects.index')->with('projectDeleted', "$project->title è stato cancellato");
     }
 }
