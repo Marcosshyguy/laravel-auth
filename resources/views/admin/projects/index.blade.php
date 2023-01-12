@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
 @section('content')
     <div class="container">
@@ -8,17 +8,17 @@
                     <tr>
                         <td>{{ $project->title }}</td>
                         <td>{{ $project->production_date }}</td>
-                        <td>
+                        <td class="d-flex justify-content-end p-1">
                             <a href="{{ route('admin.projects.show', $project->slug) }}" class="btn btn-primary">Mostra
                                 dettagli</a>
                             <a href="{{ route('admin.projects.edit', $project->slug) }}" class="btn btn-secondary">Aggiorna
                                 progetto</a>
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                            <a type="button" class="btn btn-danger" data-bs-toggle="modal"
                                 data-bs-target="#delete-post-{{ $project->id }}">
-                                <i class="fa-solid fa-trash"></i>
-                            </button>
+                                Elimina progetto
+                            </a>
 
-                            <!-- Modal della conferma prima della cancellazione -->
+                            {{-- Modal --}}
                             <div class="modal fade" id="delete-post-{{ $project->id }}" tabindex="-1"
                                 aria-labelledby="delete-label-{{ $project->id }}" aria-hidden="true">
                                 <div class="modal-dialog">
