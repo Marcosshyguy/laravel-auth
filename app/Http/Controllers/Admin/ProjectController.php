@@ -49,6 +49,7 @@ class ProjectController extends Controller
         if ($request->hasFile('new_image')) {
             $addProject['new_image'] = Storage::put('images', $request->new_image);
         };
+        // dd($addProject);
         $project = Project::create($addProject);
         return redirect()->route('admin.projects.index')->with('projectAddedSuccessfully', 'Progetto aggiunto con successo');
     }

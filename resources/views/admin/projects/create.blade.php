@@ -25,7 +25,7 @@
             </div>
 
             <div class="mb-2">
-                <label for="description">Description</label>
+                <label for="description">Descrizione progetto</label>
                 <textarea class="form-control @error('description') is-invalid @enderror" name="description" id="description"
                     rows="10">{{ old('description') }}</textarea>
                 @error('description')
