@@ -1,7 +1,14 @@
 @extends('layouts.admin')
 
+@section('title', 'Modifica ' . $project->title)
+
 @section('content')
     <div class="container mt-3">
+        <a href="{{ route('admin.projects.index') }}" class="btn btn-secondary" type="button>
+            <i class="fa-solid
+            fa-arrow-left"></i>
+            Torna a Progetti
+        </a>
         <h4 class="text-center">Stai modificando il progetto: {{ $project->title }}</h4>
         <form action="{{ route('admin.projects.update', $project->slug) }}" method="POST" enctype="multipart/form-data">
             @method('PUT')
@@ -18,8 +25,8 @@
 
             <div class="mb-2 position-relative">
                 <label for="title">Nome progetto</label>
-                <input type="text" class="form-control @error('title') is-invalid @enderror" id="title" name="title"
-                    value="{{ old('title', $project->title) }}">
+                <input type="text" class="form-control @error('title') is-invalid @enderror" id="title"
+                    name="title" value="{{ old('title', $project->title) }}">
                 @error('title')
                     <div class="invalid-feedback">
                         {{ $message }}

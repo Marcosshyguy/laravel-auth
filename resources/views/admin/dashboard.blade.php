@@ -1,5 +1,7 @@
 @extends('layouts.admin')
 
+@section('title', 'Admin')
+
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
@@ -14,7 +16,7 @@
                             </div>
                         @endif
 
-                        {{ __('You are logged in!') }}
+                        <p>Bentornato {{ Auth::user()->name }}</p>
                     </div>
                 </div>
             </div>

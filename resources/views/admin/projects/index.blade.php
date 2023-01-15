@@ -1,19 +1,24 @@
 @extends('layouts.admin')
 
+@section('title', 'Progetti')
+
 @section('content')
-    <div class="container">
+    <div class="container mt-3">
         <table class="table table-striped table-hover">
             <tbody>
                 @foreach ($projects as $project)
                     <tr>
                         <td>{{ $project->title }}</td>
+
                         <td>{{ $project->production_date }}</td>
-                        <td class="d-flex justify-content-end p-1">
-                            <a href="{{ route('admin.projects.show', $project->slug) }}" class="btn btn-primary">Mostra
+                        <td class="description-text">{{ $project->description }}</td>
+                        <td class="d-flex justify-content-center p-1">
+                            <a href="{{ route('admin.projects.show', $project->slug) }}" class="btn btn-primary ">Mostra
                                 dettagli</a>
-                            <a href="{{ route('admin.projects.edit', $project->slug) }}" class="btn btn-secondary">Aggiorna
+                            <a href="{{ route('admin.projects.edit', $project->slug) }}"
+                                class="btn btn-secondary ms-1">Aggiorna
                                 progetto</a>
-                            <a type="button" class="btn btn-danger" data-bs-toggle="modal"
+                            <a type="button" class="btn btn-danger ms-1" data-bs-toggle="modal"
                                 data-bs-target="#delete-post-{{ $project->id }}">
                                 Elimina progetto
                             </a>

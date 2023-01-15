@@ -1,6 +1,14 @@
 @extends('layouts.admin')
+
+@section('title', 'Aggiungi progetto')
+
 @section('content')
     <div class="container mt-3">
+        <a href="{{ route('admin.projects.index') }}" class="btn btn-secondary" type="button>
+            <i class="fa-solid
+            fa-arrow-left"></i>
+            Torna a Progetti
+        </a>
         <form action="{{ route('admin.projects.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             @if ($errors->any())
@@ -15,8 +23,8 @@
 
             <div class="mb-2 position-relative">
                 <label for="title">Nome progetto</label>
-                <input type="text" class="form-control @error('title') is-invalid @enderror" id="title" name="title"
-                    value="{{ old('title') }}">
+                <input type="text" class="form-control @error('title') is-invalid @enderror" id="title"
+                    name="title" value="{{ old('title') }}">
                 @error('title')
                     <div class="invalid-feedback">
                         {{ $message }}
@@ -45,6 +53,11 @@
                         {{ $message }}
                     </div>
                 @enderror
+                {{-- preview --}}
+                <div>
+                    <p id="preview-text"></p>
+                    <img src="" alt="" id="preview-image">
+                </div>
             </div>
 
 
