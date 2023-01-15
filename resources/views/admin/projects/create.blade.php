@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 @section('content')
     <div class="container mt-3">
-        <form action="{{ route('admin.projects.store') }}" method="POST">
+        <form action="{{ route('admin.projects.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             @if ($errors->any())
                 <div class="alert alert-danger">
@@ -34,6 +34,17 @@
                     </div>
                 @enderror
 
+            </div>
+
+            <div>
+                <label for="new_image">Immagine</label>
+                <input type="file" class="form-control @error('new_image') is-invalid @enderror" id='new_image'
+                    name="new_image" value="{{ old('new_image') }}">
+                @error('new_image')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
             </div>
 
 

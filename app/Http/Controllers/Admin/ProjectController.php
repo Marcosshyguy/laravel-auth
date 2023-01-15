@@ -6,10 +6,13 @@ use App\Models\Project;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Validator;
 
 class ProjectController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -40,7 +43,12 @@ class ProjectController extends Controller
     public function store(StoreProjectRequest $request)
     {
         $addProject = $request->validated();
+
         $addProject['slug'] = Str::slug($addProject['title']);
+        // add image if existe to the column through the request
+        if ($request->hasFile('new_image')) {
+            $addProject['new_image'] = Storage::put('images', $request->new_image);
+        };
         $project = Project::create($addProject);
         return redirect()->route('admin.projects.index')->with('projectAddedSuccessfully', 'Progetto aggiunto con successo');
     }
