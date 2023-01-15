@@ -87,7 +87,15 @@ class ProjectController extends Controller
     {
         $projectToChange = $request->validated();
         $projectToChange['slug'] = Str::slug($projectToChange['title']);
+        if ($request->hasFile('new_image')) {
+            if ($project->new_image) {
+                Storage::delete($project->new_image);
+                $projectToChange['new_image'] = Storage::put('images', $request->new_image);
+            }
+        }
+
         $project->update($projectToChange);
+
         return redirect()->route('admin.projects.index')->with('projectUpdatedSuccessfully', "$project->title è stato aggiornato con successo");
     }
 

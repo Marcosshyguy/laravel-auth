@@ -3,7 +3,7 @@
 @section('content')
     <div class="container mt-3">
         <h4 class="text-center">Stai modificando il progetto: {{ $project->title }}</h4>
-        <form action="{{ route('admin.projects.update', $project->slug) }}" method="POST">
+        <form action="{{ route('admin.projects.update', $project->slug) }}" method="POST" enctype="multipart/form-data">
             @method('PUT')
             @csrf
             @if ($errors->any())
@@ -62,6 +62,24 @@
                         {{ $message }}
                     </div>
                 @enderror
+            </div>
+
+            <div>
+                <label for="new_image">Immagine</label>
+                <input type="file" class="form-control @error('new_image') is-invalid @enderror" id='new_image'
+                    name="new_image">
+                @error('new_image')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
+                <div>
+                    @if ($project->new_image)
+                        <img src="{{ asset('storage/' . $project->new_image) }}" alt="{{ $project->slug }}-image">
+                    @else
+                        <img src="{{ asset('storage/images/not-found.jpeg') }}" alt="not-found">
+                    @endif
+                </div>
             </div>
 
             <button class="btn btn-info" type="submit">Aggiorna</button>
